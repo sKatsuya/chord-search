@@ -32,7 +32,7 @@ function generate(key, chordType) {
     name: KEY_TABLE[key].toUpperCase() + chordType,
     composedOf: notes
   }
-zxczzz
+
   // 表示
   const composedOf = chord.composedOf.map((element) => {
     return `"${element}"`.padStart(4, " ")

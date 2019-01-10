@@ -202,8 +202,12 @@
         </div>
       </div>
       <hr/>
-      <div v-for="chord in deductedChords">
-        {{chord.name}} {{chord.noteDiff}}
+      <div style="height: 180px; overflow: hidden;">
+        <span v-for="(chord, index) in deductedChords">
+          <span>{{chord.name}}</span>
+          <span style="color: #aaaaaa;">{{chord.noteDiff}}</span>
+          <br v-if="index % 4 === 3" />
+        </span>
       </div>
     </div>
 
@@ -540,7 +544,11 @@ let vm = new Vue({
       // コード推測
       const copyedChords = JSON.parse(JSON.stringify(this.chords))
       this.deductedChords = copyedChords.filter((chord) => {
-        return chord.composedOf.diff(notes).length === 1 && chord.composedOf.length - notes.length === 1
+        return notes.length !== 0 && (
+                 (chord.composedOf.diff(notes).length === 1 && chord.composedOf.length - notes.length === 1) ||
+                 (chord.composedOf.diff(notes).length === 2 && chord.composedOf.length - notes.length === 2) ||
+                 (chord.composedOf.diff(notes).length === 3 && chord.composedOf.length - notes.length === 3)
+               )
       }).map((chord) => {
         chord.noteDiff = chord.composedOf.diff(notes)
         return chord

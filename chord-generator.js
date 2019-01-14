@@ -13,6 +13,7 @@ const KEY_TABLE = ["c", "c#", "d", "d#", "e", "f", "f#", "g", "g#", "a", "a#", "
 const CHORD_TABLE = {
       "": [0, 4, 7],
      "m": [0, 3, 7],
+  "sus2": [0, 2, 7],
   "sus4": [0, 5, 7],
    "dim": [0, 3, 6],
    "aug": [0, 4, 8],
@@ -77,6 +78,25 @@ function test(chord, tobe) {
   test(generate(0, chordType), {name:"Cm", composedOf: ["c", "d#", "g"]})
   generate(1, chordType)
   test(generate(2, chordType), {name:"Dm", composedOf: ["d", "f", "a"]})
+  generate(3, chordType)
+  generate(4, chordType)
+  generate(5, chordType)
+  generate(6, chordType)
+  generate(7, chordType)
+  generate(8, chordType)
+  generate(9, chordType)
+  generate(10, chordType)
+  generate(11, chordType)
+}())
+
+// --------------------------------------------------------------------------------
+;(function() {
+  console.log("// sus2")
+  const chordType = "sus2"
+
+  test(generate(0, chordType), {name:"Csus2", composedOf: ["c", "d", "g"]})
+  generate(1, chordType)
+  test(generate(2, chordType), {name:"Dsus2", composedOf: ["d", "e", "a"]})
   generate(3, chordType)
   generate(4, chordType)
   generate(5, chordType)

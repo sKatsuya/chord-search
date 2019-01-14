@@ -192,12 +192,20 @@
         </div>
       </div>
       <hr/>
-      <div style="height: 180px; overflow: hidden;">
-        <span v-for="(chord, index) in deductedChords">
-          <span>{{chord.name}}</span>
-          <span style="color: #aaaaaa;">{{chord.noteDiff}}</span>
-          <br v-if="index % 4 === 3" />
-        </span>
+      <div style="height: 180px; overflow: hidden; display: flex;">
+        <div style="width: 180px;">
+          <div v-for="(chord, index) in deductedChords.filter((chord) => chord.noteDiff.length === 1)">
+            <span>{{chord.name}}</span>
+            <span style="color: #aaaaaa;">{{chord.noteDiff}} </span>
+          </div>
+        </div>
+
+        <div style="width: 180px;">
+          <div v-for="(chord, index) in deductedChords.filter((chord) => chord.noteDiff.length >= 2)">
+            <span>{{chord.name}}</span>
+            <span style="color: #aaaaaa;">{{chord.noteDiff}}</span>
+          </div>
+        </div>
       </div>
     </div>
 

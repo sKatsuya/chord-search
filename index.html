@@ -515,7 +515,18 @@ let vm = new Vue({
         const chordNotes = chord.composedOf.slice()
         return chordNotes.every((element) => notes.includes(element))
       }).sort((aChord, bChord) => {
+        // 差分が少ないものを優先
         return bChord.composedOf.length - aChord.composedOf.length
+      }).sort((aChord, bChord) => {
+        // 完全一致するコードを優先
+        const notesStr = notes.join("")
+        if (aChord.composedOf.join("") === notesStr) {
+          return -1
+        } else if (bChord.composedOf.join("") === notesStr) {
+          return 1
+        } else {
+          return 0
+        }
       })
       this.activeChord = activeChords[0] || {}
 

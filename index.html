@@ -74,7 +74,7 @@
 .score {
   border: 1px solid #000000;
   width: 100px;
-  height: 200px;
+  height: 400px;
   position: relative;
 }
 .score.bass-clef {
@@ -108,40 +108,38 @@
   background-color: #333;
   visibility: hidden;
 }
-.score.treble-clef .note.f7 { top:   0px; visibility: initial; }
-.score.treble-clef .note.e7 { top:  10px; visibility: initial; }
-.score.treble-clef .note.d7 { top:  20px; visibility: initial; }
-.score.treble-clef .note.c7 { top:  30px; visibility: initial; }
-.score.treble-clef .note.b6 { top:  40px; visibility: initial; }
-.score.treble-clef .note.a6 { top:  50px; visibility: initial; }
-.score.treble-clef .note.g6 { top:  60px; visibility: initial; }
-.score.treble-clef .note.f6 { top:  70px; visibility: initial; }
-.score.treble-clef .note.e6 { top:  80px; visibility: initial; }
-.score.treble-clef .note.d6 { top:  90px; visibility: initial; }
-.score.treble-clef .note.c6 { top: 100px; visibility: initial; }
-.score.treble-clef .note.b5 { top: 110px; visibility: initial; }
-.score.treble-clef .note.a5 { top: 120px; visibility: initial; }
-.score.treble-clef .note.g5 { top: 130px; visibility: initial; }
-.score.treble-clef .note.f5 { top: 140px; visibility: initial; }
-.score.treble-clef .note.e5 { top: 150px; visibility: initial; }
-.score.treble-clef .note.d5 { top: 160px; visibility: initial; }
-.score.treble-clef .note.c5 { top: 170px; visibility: initial; }
-
-.score.bass-clef .note.b4 { top:  20px; visibility: initial; }
-.score.bass-clef .note.a4 { top:  30px; visibility: initial; }
-.score.bass-clef .note.g4 { top:  40px; visibility: initial; }
-.score.bass-clef .note.f4 { top:  50px; visibility: initial; }
-.score.bass-clef .note.e4 { top:  60px; visibility: initial; }
-.score.bass-clef .note.d4 { top:  70px; visibility: initial; }
-.score.bass-clef .note.c4 { top:  80px; visibility: initial; }
-.score.bass-clef .note.b3 { top:  90px; visibility: initial; }
-.score.bass-clef .note.a3 { top: 100px; visibility: initial; }
-.score.bass-clef .note.g3 { top: 110px; visibility: initial; }
-.score.bass-clef .note.f3 { top: 120px; visibility: initial; }
-.score.bass-clef .note.e3 { top: 130px; visibility: initial; }
-.score.bass-clef .note.d3 { top: 140px; visibility: initial; }
-.score.bass-clef .note.c3 { top: 150px; visibility: initial; }
-.score.bass-clef .note.b2 { top: 160px; visibility: initial; }
+.score .note.f7 { top:   0px; visibility: initial; }
+.score .note.e7 { top:  10px; visibility: initial; }
+.score .note.d7 { top:  20px; visibility: initial; }
+.score .note.c7 { top:  30px; visibility: initial; }
+.score .note.b6 { top:  40px; visibility: initial; }
+.score .note.a6 { top:  50px; visibility: initial; }
+.score .note.g6 { top:  60px; visibility: initial; }
+.score .note.f6 { top:  70px; visibility: initial; }
+.score .note.e6 { top:  80px; visibility: initial; }
+.score .note.d6 { top:  90px; visibility: initial; }
+.score .note.c6 { top: 100px; visibility: initial; }
+.score .note.b5 { top: 110px; visibility: initial; }
+.score .note.a5 { top: 120px; visibility: initial; }
+.score .note.g5 { top: 130px; visibility: initial; }
+.score .note.f5 { top: 140px; visibility: initial; }
+.score .note.e5 { top: 150px; visibility: initial; }
+.score .note.d5 { top: 160px; visibility: initial; }
+.score .note.c5 { top: 170px; visibility: initial; }
+.score .note.b4 { top: 180px; visibility: initial; }
+.score .note.a4 { top: 190px; visibility: initial; }
+.score .note.g4 { top: 200px; visibility: initial; }
+.score .note.f4 { top: 210px; visibility: initial; }
+.score .note.e4 { top: 220px; visibility: initial; }
+.score .note.d4 { top: 230px; visibility: initial; }
+.score .note.c4 { top: 240px; visibility: initial; }
+.score .note.b3 { top: 250px; visibility: initial; }
+.score .note.a3 { top: 260px; visibility: initial; }
+.score .note.g3 { top: 270px; visibility: initial; }
+.score .note.f3 { top: 280px; visibility: initial; }
+.score .note.e3 { top: 290px; visibility: initial; }
+.score .note.d3 { top: 300px; visibility: initial; }
+.score .note.c3 { top: 310px; visibility: initial; }
 
 </style>
 
@@ -151,9 +149,8 @@
 
 <div id="app" class="app" :class="{'mounted': isMounted}">
   <div class="side">
-
-    <!-- 楽譜 ト音記号 -->
-    <div class="score treble-clef">
+    <!-- 楽譜 -->
+    <div class="score">
       <div class="sheet">
         <div class="line" :class="{active: activeKeys.some((key) => 88 <= key.midiNote)}"></div>
         <div class="line" :class="{active: activeKeys.some((key) => 84 <= key.midiNote)}"></div>
@@ -163,16 +160,10 @@
         <div class="sheet-line"></div>
         <div class="sheet-line"></div>
         <div class="sheet-line"></div>
-        <div class="line" :class="{active: activeKeys.some((key) => key.midiNote === 60)}"></div>
-        <div class="line"></div>
-      </div>
-      <div class="note" v-for="activeKey in activeKeys" :class="[activeKey.note + activeKey.octave]"></div>
-    </div>
-
-    <!-- 楽譜 ヘ音記号 -->
-    <div class="score bass-clef">
-      <div class="sheet">
-        <div class="line"></div>
+        <div
+          class="line"
+          :class="{active: activeKeys.some((key) => key.midiNote === 60)}"
+        ></div>
         <div class="sheet-line"></div>
         <div class="sheet-line"></div>
         <div class="sheet-line"></div>
@@ -183,7 +174,6 @@
       </div>
       <div class="note" v-for="activeKey in activeKeys" :class="[activeKey.note + activeKey.octave]"></div>
     </div>
-
   </div>
 
   <div class="main">
@@ -544,7 +534,7 @@ let vm = new Vue({
       // コード推測
       const copyedChords = JSON.parse(JSON.stringify(this.chords))
       this.deductedChords = copyedChords.filter((chord) => {
-        return notes.length !== 0 && (
+        return notes.length > 1 && (
                  (chord.composedOf.diff(notes).length === 1 && chord.composedOf.length - notes.length === 1) ||
                  (chord.composedOf.diff(notes).length === 2 && chord.composedOf.length - notes.length === 2) ||
                  (chord.composedOf.diff(notes).length === 3 && chord.composedOf.length - notes.length === 3)

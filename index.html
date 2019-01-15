@@ -45,7 +45,7 @@
 .active-chord {
   display: inline-block;
   text-align: center;
-  width: 180px;
+  width: 190px;
 }
 .chord-info {
   margin: 0px 0px 0px 8px;
@@ -186,9 +186,9 @@
           v-for="activeKey in activeKeys"
           :class="{overplus: overplusKeys.includes(activeKey)}"
         >{{activeKey.note}}<span class="small">{{activeKey.octave}}</span>&nbsp;</span>
-        <div class="" style="padding-left: 190px;">
+        <div class="" style="padding-left: 200px;">
         =
-        <span>{{ noteDiff }}</span>
+        <span>{{ intervals }}</span>
         </div>
       </div>
       <hr/>
@@ -461,11 +461,12 @@ let vm = new Vue({
     blackKeys() {
       return this.keys.filter((key) => key.keyType === "black" && 41 <= key.midiNote && key.midiNote < 84)
     },
-    noteDiff() {
+    intervals() {
       let sum = "";
       for (let i=1; i<this.activeKeys.length; i++) {
-        const diff = new String(this.activeKeys[i].midiNote - this.activeKeys[i-1].midiNote)
-        sum = `${sum} ${diff}`
+        const diff = this.activeKeys[i].midiNote - this.activeKeys[i-1].midiNote - 1
+        const table = ["m2", "M2", "m3", "M3", "P4", "A4", "P5", "m6", "M6", "m7", "M7", "P8"]
+        sum = `${sum} ${table[diff%table.length]}`
       }
       return sum
     }

@@ -9,7 +9,7 @@ Array.prototype.diff = function(a) {
 };
 
 
-const KEY_TABLE = ["c", "c#", "d", "d#", "e", "f", "f#", "g", "g#", "a", "a#", "b"]
+const KEY_TABLE = ["c", "d-", "d", "e-", "e", "f", "g-", "g", "a-", "a", "b-", "b"]
 const CHORD_TABLE = {
       "": [0, 4, 7],
      "m": [0, 3, 7],
@@ -58,7 +58,7 @@ function test(chord, tobe) {
 
   test(generate(0, chordType), {name:"C", composedOf: ["c", "e", "g"]})
   generate(1, chordType)
-  test(generate(2, chordType), {name:"D", composedOf: ["d", "f#", "a"]})
+  test(generate(2, chordType), {name:"D", composedOf: ["d", "g-", "a"]})
   generate(3, chordType)
   generate(4, chordType)
   generate(5, chordType)
@@ -75,7 +75,7 @@ function test(chord, tobe) {
   console.log("// minor")
   const chordType = "m"
 
-  test(generate(0, chordType), {name:"Cm", composedOf: ["c", "d#", "g"]})
+  test(generate(0, chordType), {name:"Cm", composedOf: ["c", "e-", "g"]})
   generate(1, chordType)
   test(generate(2, chordType), {name:"Dm", composedOf: ["d", "f", "a"]})
   generate(3, chordType)
@@ -132,9 +132,9 @@ function test(chord, tobe) {
   console.log("// dim")
   const chordType = "dim"
 
-  test(generate(0, chordType), {name:"Cdim", composedOf: ["c", "d#", "f#"]})
+  test(generate(0, chordType), {name:"Cdim", composedOf: ["c", "e-", "g-"]})
   generate(1, chordType)
-  test(generate(2, chordType), {name:"Ddim", composedOf: ["d", "f", "g#"]})
+  test(generate(2, chordType), {name:"Ddim", composedOf: ["d", "f", "a-"]})
   generate(3, chordType)
   generate(4, chordType)
   generate(5, chordType)
@@ -151,9 +151,9 @@ function test(chord, tobe) {
   console.log("// aug")
   const chordType = "aug"
 
-  test(generate(0, chordType), {name:"Caug", composedOf: ["c", "e", "g#"]})
+  test(generate(0, chordType), {name:"Caug", composedOf: ["c", "e", "a-"]})
   generate(1, chordType)
-  test(generate(2, chordType), {name:"Daug", composedOf: ["d", "f#", "a#"]})
+  test(generate(2, chordType), {name:"Daug", composedOf: ["d", "g-", "b-"]})
   generate(3, chordType)
   generate(4, chordType)
   generate(5, chordType)
@@ -170,9 +170,9 @@ function test(chord, tobe) {
   console.log("// 7")
   const chordType = "7"
 
-  test(generate(0, chordType), {name:"C7", composedOf: ["c", "e", "g", "a#"]})
+  test(generate(0, chordType), {name:"C7", composedOf: ["c", "e", "g", "b-"]})
   generate(1, chordType)
-  test(generate(2, chordType), {name:"D7", composedOf: ["d", "f#", "a", "c"]})
+  test(generate(2, chordType), {name:"D7", composedOf: ["d", "g-", "a", "c"]})
   generate(3, chordType)
   generate(4, chordType)
   generate(5, chordType)
@@ -191,7 +191,7 @@ function test(chord, tobe) {
 
   test(generate(0, chordType), {name:"CM7", composedOf: ["c", "e", "g", "b"]})
   generate(1, chordType)
-  test(generate(2, chordType), {name:"DM7", composedOf: ["d", "f#", "a", "c#"]})
+  test(generate(2, chordType), {name:"DM7", composedOf: ["d", "g-", "a", "d-"]})
   generate(3, chordType)
   generate(4, chordType)
   generate(5, chordType)
@@ -208,7 +208,7 @@ function test(chord, tobe) {
   console.log("// m7")
   const chordType = "m7"
 
-  test(generate(0, chordType), {name:"Cm7", composedOf: ["c", "d#", "g", "a#"]})
+  test(generate(0, chordType), {name:"Cm7", composedOf: ["c", "e-", "g", "b-"]})
   generate(1, chordType)
   test(generate(2, chordType), {name:"Dm7", composedOf: ["d", "f", "a", "c"]})
   generate(3, chordType)
@@ -229,7 +229,7 @@ function test(chord, tobe) {
 
   test(generate(0, chordType), {name:"Cadd9", composedOf: ["c", "e", "g", "d"]})
   generate(1, chordType)
-  test(generate(2, chordType), {name:"Dadd9", composedOf: ["d", "f#", "a", "e"]})
+  test(generate(2, chordType), {name:"Dadd9", composedOf: ["d", "g-", "a", "e"]})
   generate(3, chordType)
   generate(4, chordType)
   generate(5, chordType)

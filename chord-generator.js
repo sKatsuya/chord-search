@@ -30,7 +30,7 @@ function generate(key, chordType) {
   })
 
   const chord = {
-    name: KEY_TABLE[key].toUpperCase() + chordType,
+    name: KEY_TABLE[key].toUpperCase().replace("-", "b") + chordType,
     composedOf: notes
   }
 

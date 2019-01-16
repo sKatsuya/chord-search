@@ -34,11 +34,19 @@
 .black .key.none {
   visibility: hidden;
 }
-.key.active {
-  background-color: #bbbbff;
+.black .key.highlight {
+  background-color: #858ead;
 }
-.key.overplus {
-  background-color: #ddaa66;
+.key.highlight {
+  background-color: #ccddff;
+}
+.black .key.active,
+.white .key.active {
+  background-color: #5dbeff;
+}
+.black .key.overplus,
+.white .key.overplus {
+  background-color: #ff6666;
 }
 
 /*コード情報*/
@@ -50,7 +58,7 @@
 .chord-info {
   margin: 0px 0px 0px 8px;
   width: 600px;
-  height: 292px;
+  height: 274px;
   color: #333333;
   margin: 0px 0px 8px 0px;
 }
@@ -60,7 +68,7 @@
   height: 100px;
 }
 .chord .overplus {
-  color: #ddaa66;
+  color: #ff6666;
 }
 .small {
   font-size: 20px;
@@ -212,20 +220,25 @@
       </div>
     </div>
 
+    <!-- 調号 -->
+    <select @change="onChangeKeySign">
+      <option value="C">C</option>
+      <option value="A">A</option>
+    </select>
     <!-- 鍵盤 -->
     <div class="keyboard">
       <div class="white">
         <div
           class="key"
           v-for="item in whiteKeys"
-          :class="{active: activeKeys.includes(item), overplus: overplusKeys.includes(item)}"
+          :class="{active: activeKeys.includes(item), overplus: overplusKeys.includes(item), highlight: keySigns[activeKeySign].includes(item.note)}"
         ></div>
       </div>
       <div class="black">
         <div
           class="key"
           v-for="item in blackKeys"
-          :class="{active: activeKeys.includes(item), overplus: overplusKeys.includes(item), none: item.note === ''}"
+          :class="{active: activeKeys.includes(item), overplus: overplusKeys.includes(item), none: item.note === '', highlight: keySigns[activeKeySign].includes(item.note)}"
         ></div>
       </div>
     </div>
@@ -453,7 +466,12 @@ let vm = new Vue({
 {name:  'Aadd9', composedOf: [ "a","d-", "e", "b"]},
 {name: 'Bbadd9', composedOf: ["b-", "d", "f", "c"]},
 {name:  'Badd9', composedOf: [ "b","e-","g-","d-"]},
-    ]
+    ],
+    keySigns: {
+      "C": [],
+      "A": ['a', 'b', 'd-', 'd', 'e', 'g-', 'a-', 'a']
+    },
+    activeKeySign: "C"
   },
   mounted() {
     this.isMounted = true
@@ -489,6 +507,11 @@ let vm = new Vue({
     }
   },
   methods: {
+    onChangeKeySign(event) {
+      this.activeKeySign = event.target.value
+      event.target.blur()
+    },
+    // ノートイベント
     noteOn(key) {
       if (!key) return
       if (!this.activeKeys.find((activeKey) => activeKey.note === key.note && activeKey.octave === key.octave)) {
